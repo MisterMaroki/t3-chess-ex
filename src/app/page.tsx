@@ -8,7 +8,7 @@ export default async function Home() {
 	return (
 		<section className="flex-col w-full flex-center">
 			<h1 className="text-center head_text">
-				T3 Chess <br />
+				GlassBoard <span className="text-6xl">♗</span> <br />
 				<span className="text-center orange_gradient"> AI-Powered Moves</span>
 			</h1>
 			<p className="pb-8 text-center desc">

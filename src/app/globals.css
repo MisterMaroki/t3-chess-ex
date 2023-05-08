@@ -4,6 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+/*
+body {
+	color: rgb(var(--foreground-rgb));
+	background: linear-gradient(
+			to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))
+		)
+		rgb(var(--background-start-rgb));
+}
+*/
 .main {
 	width: 100vw;
 	min-height: 100vh;
@@ -15,7 +39,7 @@
 }
 
 .main:before {
-	background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #ffffff 100%);
+	background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #e2e1e1 100%);
 	position: absolute;
 	content: '';
 	z-index: 2;
@@ -69,7 +93,7 @@
 /* Tailwind Styles */
 
 .app {
-	@apply relative z-10 min-h-screen mx-auto flex max-w-7xl flex-col items-center justify-center px-6 sm:px-16;
+	@apply relative z-10 min-h-screen mx-auto flex max-w-full h-screen w-screen max-h-full overflow-hidden flex-col items-center justify-center;
 }
 
 .black_btn {
@@ -108,7 +132,7 @@
 	@apply flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur;
 }
 
-.glassmorphism {
+.glassy {
 	@apply rounded-xl border border-gray-200 bg-white/20 p-5 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur;
 }
 
@@ -132,7 +156,7 @@
 
 /* Nav Component */
 .logo_text {
-	@apply font-satoshi text-lg font-semibold tracking-wide text-black max-sm:hidden;
+	@apply font-satoshi text-3xl font-extrabold tracking-wide text-black max-sm:hidden;
 }
 
 .dropdown {
