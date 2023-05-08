@@ -1,6 +1,6 @@
 import Button from '@/components/ui/Button';
 import { db } from '@/lib/db';
-import Image from 'next/image';
+import Link from 'next/link';
 
 export default async function Home() {
 	await db.set('hello', 'world');
@@ -14,9 +14,11 @@ export default async function Home() {
 			<p className="pb-8 text-center desc">
 				Chat with your friends and play chess with the help of AI
 			</p>
-			<Button size="lg" className=" outline_btn">
-				Go
-			</Button>
+			<Link href="/login">
+				<Button size="lg" className=" outline_btn">
+					Get Started
+				</Button>
+			</Link>
 		</section>
 	);
 }
