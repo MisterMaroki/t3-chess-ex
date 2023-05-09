@@ -204,7 +204,11 @@ body {
 }
 
 .sidebar_link {
-	@apply flex items-center relative p-2.5 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-indigo-600 gap-x-3 hover:bg-white/30 transition-all duration-200;
+	@apply flex items-center relative p-2.5 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-blue-600 gap-x-3 hover:bg-white/30 transition-all duration-200;
+}
+
+.sidebar_link_noti {
+	@apply absolute flex items-center justify-center w-3 h-3 p-3 text-sm font-extrabold rounded-md drop-shadow-md right-10 bg-white/40;
 }
 
 /* PromptCard Component */

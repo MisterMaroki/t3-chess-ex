@@ -19,19 +19,19 @@ const FriendRequestSidebarOptions: FC<FriendRequestSidebarOptionsProps> = ({
 		initialUnseenRequestCount
 	);
 
+	const friendRequestHandler = () => {
+		setUnseenRequestCount((prev) => prev + 1);
+	};
+
+	const addedFriendHandler = () => {
+		setUnseenRequestCount((prev) => prev - 1);
+	};
+
 	useEffect(() => {
 		pusherClient.subscribe(
 			toPusherKey(`user:${sessionId}:incoming_friend_requests`)
 		);
 		pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
-
-		const friendRequestHandler = () => {
-			setUnseenRequestCount((prev) => prev + 1);
-		};
-
-		const addedFriendHandler = () => {
-			setUnseenRequestCount((prev) => prev - 1);
-		};
 
 		pusherClient.bind('incoming_friend_requests', friendRequestHandler);
 		pusherClient.bind('new_friend', addedFriendHandler);
@@ -54,9 +54,7 @@ const FriendRequestSidebarOptions: FC<FriendRequestSidebarOptionsProps> = ({
 			<p className="truncate">Friend requests</p>
 
 			{unseenRequestCount > 0 ? (
-				<div className="flex items-center justify-center w-5 h-5 text-xs text-white bg-indigo-600 rounded-full">
-					{unseenRequestCount}
-				</div>
+				<div className="sidebar_link_noti">{unseenRequestCount}</div>
 			) : null}
 		</Link>
 	);

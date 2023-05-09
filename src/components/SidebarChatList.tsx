@@ -89,9 +89,7 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
 						>
 							{friend.name}
 							{unseenMessagesCount > 0 ? (
-								<div className="absolute flex items-center justify-center w-4 h-4 text-sm font-extrabold text-white rounded-full right-4 glassy purple_gradient">
-									{unseenMessagesCount}
-								</div>
+								<div className="sidebar_link_noti">{unseenMessagesCount}</div>
 							) : null}
 						</a>
 					</li>
