@@ -45,6 +45,10 @@ const CustomSquareRenderer = forwardRef<HTMLDivElement, CustomSquareProps>(
 export default function page() {
 	return (
 		<div className="flex items-start justify-start w-full h-full gap-x-4">
+			<audio autoPlay src="/welcome.mp3">
+				Your browser does not support the
+				<code>audio</code> element.
+			</audio>
 			<div className="flex-1">
 				<Chessboard
 					id="CustomSquare"

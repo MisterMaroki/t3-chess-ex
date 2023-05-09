@@ -3,6 +3,7 @@ import { Icons } from '@/components/Icons';
 import MobileChatLayout from '@/components/MobileChatLayout';
 import SidebarChatList from '@/components/SidebarChatList';
 import SignOutButton from '@/components/SignOutButton';
+import SoundOnOffButton from '@/components/SoundOnOffButton';
 import Button from '@/components/ui/Button';
 import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
 import { fetchRedis } from '@/helpers/redis';
@@ -73,6 +74,7 @@ const Layout = async ({ children }: LayoutProps) => {
 					<Button>Play Chess</Button>
 				</Link>
 
+				<SoundOnOffButton />
 				{friends.length > 0 ? (
 					<div className="text-xs font-semibold leading-6 text-gray-400">
 						Your chats
