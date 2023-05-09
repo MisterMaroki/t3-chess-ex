@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
-// import SidebarChatList from '@/components/SidebarChatList';
+import SidebarChatList from '@/components/SidebarChatList';
 // import MobileChatLayout from '@/components/MobileChatLayout';
 import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
 import { SidebarOption } from '@/types/typings';
@@ -77,7 +77,7 @@ const Layout = async ({ children }: LayoutProps) => {
 				<nav className="flex flex-col flex-1">
 					<ul role="list" className="flex flex-col flex-1 gap-y-7">
 						<li>
-							{/* <SidebarChatList sessionId={session.user.id} friends={friends} /> */}
+							<SidebarChatList sessionId={session.user.id} friends={friends} />
 						</li>
 						<li>
 							<div className="text-xs font-semibold leading-6 text-gray-400">
