@@ -1,18 +1,18 @@
+import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
 import { Icons } from '@/components/Icons';
+import MobileChatLayout from '@/components/MobileChatLayout';
+import SidebarChatList from '@/components/SidebarChatList';
 import SignOutButton from '@/components/SignOutButton';
+import Button from '@/components/ui/Button';
 import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
+import { SidebarOption } from '@/types/typings';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
-import SidebarChatList from '@/components/SidebarChatList';
-// import MobileChatLayout from '@/components/MobileChatLayout';
-import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
-import { SidebarOption } from '@/types/typings';
-import MobileChatLayout from '@/components/MobileChatLayout';
 
 interface LayoutProps {
 	children: ReactNode;
@@ -67,6 +67,10 @@ const Layout = async ({ children }: LayoutProps) => {
 					<span className="logo_text">
 						GlassBoard <span className="text-6xl purple_gradient">♗</span>
 					</span>
+				</Link>
+
+				<Link href="/chess">
+					<Button>Play Chess</Button>
 				</Link>
 
 				{friends.length > 0 ? (
