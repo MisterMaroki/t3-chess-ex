@@ -1,4 +1,4 @@
-import { LucideProps, UserPlus } from 'lucide-react';
+import { LucideProps, UserPlus, VolumeX, Volume2 } from 'lucide-react';
 
 export const Icons = {
 	Logo: (props: LucideProps) => (
@@ -9,7 +9,16 @@ export const Icons = {
 			/>
 		</svg>
 	),
-
+	SoundOn: (props: LucideProps) => (
+		<svg {...props} viewBox="0 0 2000 2000">
+			<path
+				fill="currentColor"
+				d="m1000 0c-551.125 0-1000 448.875-1000 1000s448.875 1000 1000 1000 1000-448.875 1000-1000-448.875-1000-1000-1000zm0 1850c-480.875 0-875-394.125-875-875s394.125-875 875-875 875 394.125 875 875-394.125 875-875 875zm-125-625h-1"
+			/>
+		</svg>
+	),
+	VolumeX,
+	Volume2,
 	UserPlus,
 };
 

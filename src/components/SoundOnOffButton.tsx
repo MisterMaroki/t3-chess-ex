@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
+import { Icons } from './Icons';
 import Button from './ui/Button';
 
 interface Props {}
@@ -33,7 +34,7 @@ const SoundOnOffButton: FC<Props> = () => {
 					<code>audio</code> element.
 				</audio>
 			) : null} */}
-			{isEnabled ? 'Sound Off' : 'Sound On'}
+			{isEnabled ? <Icons.VolumeX /> : <Icons.Volume2 />}
 		</Button>
 	);
 };
