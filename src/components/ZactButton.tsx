@@ -12,26 +12,18 @@ interface Props {
 export const ZactButton: FC<Props> = ({ session }) => {
 	const { mutate, data, isLoading, error } = useZact(validatedAction);
 
+	const makeItHAppenBro = () => {
+		mutate({
+			email: session?.user.email || 'no email',
+			userId: session?.user.id || 'no id',
+		});
+	};
 	useEffect(() => {
-		const makeItHAppenBro = () => {
-			mutate({
-				email: session?.user.email || 'no email',
-				userId: session?.user.id || 'no id',
-			});
-		};
 		if (session) makeItHAppenBro();
 	}, [session]);
 
 	return (
-		<Button
-			onClick={() =>
-				mutate({
-					email: session?.user.email || 'no email',
-					userId: session?.user.id || 'no id',
-				})
-			}
-			disabled={isLoading}
-		>
+		<Button onClick={makeItHAppenBro} disabled={isLoading}>
 			{data
 				? data.message
 				: isLoading
