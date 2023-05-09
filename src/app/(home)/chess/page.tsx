@@ -60,7 +60,26 @@ export default function page() {
 					}}
 				/>
 			</div>
-			<MoveList moves={[{ san: 'e4' }, { san: 'e5' }]} />
+			<MoveList
+				moves={[
+					{
+						san: 'e4',
+						from: 'e4',
+						to: 'e5',
+						color: 'w',
+						flags: '',
+						piece: 'p',
+					},
+					{
+						san: 'Nf3',
+						from: 'g1',
+						to: 'f3',
+						color: 'w',
+						flags: 'n',
+						piece: 'n',
+					},
+				]}
+			/>
 		</div>
 	);
 }
