@@ -12,6 +12,7 @@ import SidebarChatList from '@/components/SidebarChatList';
 // import MobileChatLayout from '@/components/MobileChatLayout';
 import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
 import { SidebarOption } from '@/types/typings';
+import MobileChatLayout from '@/components/MobileChatLayout';
 
 interface LayoutProps {
 	children: ReactNode;
@@ -52,14 +53,14 @@ const Layout = async ({ children }: LayoutProps) => {
 
 	return (
 		<div className="flex w-full h-full">
-			{/* <div className="md:hidden">
+			<div className="md:hidden">
 				<MobileChatLayout
 					friends={friends}
 					session={session}
 					sidebarOptions={sidebarOptions}
 					unseenRequestCount={unseenRequestCount}
 				/>
-			</div> */}
+			</div>
 
 			<div className="z-50 flex-col hidden h-full max-w-sm overflow-y-auto border-r border-gray-200 w-fit shrink-0 order-0 glassy md:flex grow gap-y-5">
 				<Link href="/home" className="flex items-center h-16 shrink-0">
@@ -137,7 +138,7 @@ const Layout = async ({ children }: LayoutProps) => {
 				</nav>
 			</div>
 
-			<aside className="container w-full max-h-screen py-16 md:py-12 md:px-8">
+			<aside className="container w-full max-h-full pt-20 md:pt-12 ">
 				{children}
 			</aside>
 		</div>

@@ -26,6 +26,11 @@ body {
 		rgb(var(--background-start-rgb));
 }
 */
+@layer base {
+	container {
+		@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+	}
+}
 
 .scrollbar-w-2::-webkit-scrollbar {
 	width: 0.25rem;
@@ -180,7 +185,7 @@ body {
 
 /* Nav Component */
 .logo_text {
-	@apply font-satoshi text-3xl font-extrabold tracking-wide text-black max-sm:hidden;
+	@apply font-satoshi text-3xl font-extrabold tracking-wide text-black max-sm:text-xl;
 }
 
 .dropdown {
