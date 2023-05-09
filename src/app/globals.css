@@ -172,6 +172,10 @@ body {
 	@apply rounded-xl border border-gray-200 bg-white/20 p-5 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur;
 }
 
+.glassy_bg {
+	@apply bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur;
+}
+
 .prompt_layout {
 	@apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
 }
@@ -204,7 +208,7 @@ body {
 }
 
 .sidebar_link {
-	@apply flex items-center relative p-2.5 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-blue-600 gap-x-3 hover:bg-white/30 transition-all duration-200;
+	@apply flex items-center relative p-2.5 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-indigo-600 gap-x-3 hover:bg-white/30 transition-all duration-200;
 }
 
 .sidebar_link_noti {

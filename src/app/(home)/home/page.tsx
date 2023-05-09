@@ -8,7 +8,7 @@ const Page = async () => {
 	if (!session) redirect('/');
 
 	return (
-		<div className="flex w-full h-screen">
+		<div className="flex flex-col items-start gap-3">
 			<h1 className="head_text">Welcome, {session?.user.name}!</h1>
 			<ZactButton session={session} />
 		</div>

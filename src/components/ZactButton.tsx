@@ -2,16 +2,28 @@
 
 import { validatedAction } from '@/app/(home)/home/addcs';
 import { Session } from 'next-auth';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useZact } from 'zact/client';
+import Button from './ui/Button';
 
 interface Props {
 	session: Session | null;
 }
 export const ZactButton: FC<Props> = ({ session }) => {
 	const { mutate, data, isLoading, error } = useZact(validatedAction);
+
+	useEffect(() => {
+		const makeItHAppenBro = () => {
+			mutate({
+				email: session?.user.email || 'no email',
+				userId: session?.user.id || 'no id',
+			});
+		};
+		if (session) makeItHAppenBro();
+	}, [session]);
+
 	return (
-		<button
+		<Button
 			onClick={() =>
 				mutate({
 					email: session?.user.email || 'no email',
@@ -27,6 +39,6 @@ export const ZactButton: FC<Props> = ({ session }) => {
 				: error
 				? error.message
 				: 'Click me'}
-		</button>
+		</Button>
 	);
 };
