@@ -63,7 +63,7 @@ const Layout = async ({ children }: LayoutProps) => {
 			</div>
 
 			<div className="z-50 flex-col hidden h-full max-w-sm overflow-y-auto border-r border-gray-200 w-fit shrink-0 order-0 glassy md:flex grow gap-y-5">
-				<Link href="/home" className="flex items-center h-16 shrink-0">
+				<Link href="/chess" className="flex items-center h-16 shrink-0">
 					<span className="logo_text">
 						GlassBoard <span className="text-6xl purple_gradient">♗</span>
 					</span>

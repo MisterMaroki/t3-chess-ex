@@ -60,7 +60,10 @@ const AddFriendButton: FC<AddFriendButtonProps> = ({}) => {
 			>
 				Add friend by E-Mail
 			</label>
-
+			<audio autoPlay src="/notify.mp3">
+				Your browser does not support the
+				<code>audio</code> element.
+			</audio>
 			<div className="flex gap-4 mt-2">
 				<input
 					{...register('email')}

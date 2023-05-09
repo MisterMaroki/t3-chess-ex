@@ -136,6 +136,13 @@ body {
 .orange_gradient {
 	@apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
 }
+.bg_og {
+	@apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500;
+}
+
+.bg_purp {
+	@apply bg-gradient-to-r from-purple-600/40 to-pink-600/50;
+}
 
 .purple_gradient {
 	@apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
