@@ -13,22 +13,41 @@ export const ZactButton: FC<Props> = ({ session }) => {
 	const { mutate, data, isLoading, error } = useZact(validatedAction);
 
 	return (
-		<button
-			onClick={() =>
-				mutate({
-					email: session?.user.email || 'no email',
-					userId: session?.user.id || 'no id',
-				})
-			}
-			disabled={isLoading}
-		>
-			{data
-				? data.message
-				: isLoading
-				? 'Loading...'
-				: error
-				? error.message
-				: 'Click me'}
-		</button>
+		<>
+			<button
+				onClick={() =>
+					mutate({
+						email: session?.user.email || 'no email',
+						userId: session?.user.id || 'no id',
+					})
+				}
+				disabled={isLoading}
+			>
+				{data
+					? data.message
+					: isLoading
+					? 'Loading...'
+					: error
+					? error.message
+					: 'Click me'}
+			</button>
+			<button
+				onClick={() =>
+					mutate({
+						email: 'mail',
+						userId: session?.user.id || 'no id',
+					})
+				}
+				disabled={isLoading}
+			>
+				{data
+					? data.message
+					: isLoading
+					? 'Loading...'
+					: error
+					? error.message
+					: 'Click me'}
+			</button>
+		</>
 	);
 };
