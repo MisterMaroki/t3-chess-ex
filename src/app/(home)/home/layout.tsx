@@ -20,7 +20,7 @@ interface LayoutProps {
 
 // Done after the video and optional: add page metadata
 export const metadata = {
-	title: 'FriendZone | home',
+	title: 'GlassBoard | home',
 	description: 'Your home',
 };
 
@@ -62,10 +62,10 @@ const Layout = async ({ children }: LayoutProps) => {
 				/>
 			</div> */}
 
-			<div className="z-50 flex-col hidden w-full h-full max-w-sm overflow-y-auto border-r border-gray-200 w-fit shrink-0 order-0 glassy md:flex grow gap-y-5">
+			<div className="z-50 flex-col hidden h-full max-w-sm overflow-y-auto border-r border-gray-200 w-fit shrink-0 order-0 glassy md:flex grow gap-y-5">
 				<Link href="/home" className="flex items-center h-16 shrink-0">
 					<span className="logo_text">
-						GlassBoard <span className="text-5xl">♗</span>
+						GlassBoard <span className="text-6xl purple_gradient">♗</span>
 					</span>
 				</Link>
 
@@ -90,10 +90,7 @@ const Layout = async ({ children }: LayoutProps) => {
 									const Icon = Icons[option.Icon];
 									return (
 										<li key={option.id}>
-											<Link
-												href={option.href}
-												className="flex gap-3 p-2 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-indigo-600 hover:bg-gray-50 group"
-											>
+											<Link href={option.href} className="sidebar_link group">
 												<span className="text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white">
 													<Icon className="w-4 h-4" />
 												</span>
@@ -118,6 +115,7 @@ const Layout = async ({ children }: LayoutProps) => {
 								<div className="relative w-8 h-8 glassy">
 									<Image
 										fill
+										sizes="100px"
 										referrerPolicy="no-referrer"
 										className="rounded-full"
 										src={session.user.image || ''}

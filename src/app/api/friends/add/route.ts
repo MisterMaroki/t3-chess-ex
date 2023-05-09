@@ -43,6 +43,19 @@ export async function POST(req: Request) {
 			return new Response('Already added this user', { status: 400 });
 		}
 
+		// check if user we are adding has already added us
+		const hasAlreadyAddedUs = (await fetchRedis(
+			'sismember',
+			`user:${session.user.id}:incoming_friend_requests`,
+			idToAdd
+		)) as 0 | 1;
+
+		if (hasAlreadyAddedUs) {
+			return new Response('This user has already added you', {
+				status: 400,
+			});
+		}
+
 		// check if user is already added
 		const isAlreadyFriends = (await fetchRedis(
 			'sismember',
