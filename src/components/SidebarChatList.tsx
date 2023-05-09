@@ -85,11 +85,11 @@ const SidebarChatList: FC<SidebarChatListProps> = ({ friends, sessionId }) => {
 					<li key={friend.id}>
 						<a
 							href={`/home/chat/${chatHrefConstructor(sessionId, friend.id)}`}
-							className="flex items-center p-2 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-indigo-600 hover:bg-gray-50 group gap-x-3"
+							className="rounded-md sidebar_link group gap-x-3"
 						>
 							{friend.name}
 							{unseenMessagesCount > 0 ? (
-								<div className="flex items-center justify-center w-4 h-4 text-xs font-medium text-white bg-indigo-600 rounded-full">
+								<div className="absolute flex items-center justify-center w-4 h-4 text-sm font-extrabold text-white rounded-full right-4 glassy purple_gradient">
 									{unseenMessagesCount}
 								</div>
 							) : null}

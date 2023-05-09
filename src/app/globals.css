@@ -192,7 +192,7 @@ body {
 }
 
 .sidebar_link {
-	@apply flex items-center p-2 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-indigo-600 gap-x-3 hover:bg-white/30 transition-all duration-200;
+	@apply flex items-center relative p-2.5 text-sm font-semibold leading-6 text-gray-700 rounded-md hover:text-indigo-600 gap-x-3 hover:bg-white/30 transition-all duration-200;
 }
 
 /* PromptCard Component */
