@@ -1,14 +1,13 @@
 import { Icons } from '@/components/Icons';
 import SignOutButton from '@/components/SignOutButton';
+import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
+import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
-// import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
-import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id';
-import { fetchRedis } from '@/helpers/redis';
 // import SidebarChatList from '@/components/SidebarChatList';
 // import MobileChatLayout from '@/components/MobileChatLayout';
 import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions';
