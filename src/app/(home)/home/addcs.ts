@@ -1,15 +1,13 @@
 'use server';
 
-import { z } from 'zod';
-import { zact } from 'zact/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 import { fetchRedis } from '@/helpers/redis';
 import { db } from '@/lib/db';
+import { zact } from 'zact/server';
+import { z } from 'zod';
 
 export const validatedAction = zact(
 	z.object({
-		email: z.string().max(5),
+		email: z.string().email(),
 		userId: z.string(),
 	})
 )(async ({ email, userId }) => {

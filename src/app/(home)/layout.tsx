@@ -39,7 +39,6 @@ const Layout = async ({ children }: LayoutProps) => {
 	if (!session) redirect('/');
 
 	const friends = await getFriendsByUserId(session.user.id);
-	console.log('friends', friends);
 
 	const unseenRequestCount = (
 		(await fetchRedis(
@@ -47,10 +46,6 @@ const Layout = async ({ children }: LayoutProps) => {
 			`user:${session.user.id}:incoming_friend_requests`
 		)) as User[]
 	).length;
-	console.log(
-		'🚀 ~ file: layout.tsx:48 ~ Layout ~ unseenRequestCount:',
-		unseenRequestCount
-	);
 
 	return (
 		<div className="flex w-full h-full">
@@ -70,13 +65,10 @@ const Layout = async ({ children }: LayoutProps) => {
 					</span>
 				</Link>
 
-				<div className="flex gap-x-3">
-					<Link href="/chess">
-						<Button>Play Chess</Button>
-					</Link>
+				<Link href="/chess">
+					<Button>Play Chess</Button>
+				</Link>
 
-					<SoundOnOffButton />
-				</div>
 				{friends.length > 0 ? (
 					<div className="text-xs font-semibold leading-6 text-gray-400">
 						Your chats
@@ -118,30 +110,32 @@ const Layout = async ({ children }: LayoutProps) => {
 							</ul>
 						</li>
 
-						<li className="flex items-center mt-auto -ml-6">
-							<div className="flex items-center flex-1 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 gap-x-4">
-								<div className="relative w-8 h-8 glassy">
-									<Image
-										fill
-										sizes="100px"
-										referrerPolicy="no-referrer"
-										className="rounded-full"
-										src={session.user.image || ''}
-										alt="Your profile picture"
-									/>
-								</div>
+						<div className="flex flex-col gap-4 mt-auto">
+							<SoundOnOffButton />
+							<li className="flex items-center -ml-6">
+								<div className="flex items-center flex-1 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 gap-x-4">
+									<div className="relative w-8 h-8 glassy">
+										<Image
+											fill
+											sizes="100px"
+											referrerPolicy="no-referrer"
+											className="rounded-full"
+											src={session.user.image || ''}
+											alt="Your profile picture"
+										/>
+									</div>
 
-								<span className="sr-only">Your profile</span>
-								<div className="flex flex-col">
-									<span aria-hidden="true">{session.user.name}</span>
-									<span className="text-xs text-zinc-400" aria-hidden="true">
-										{session.user.email}
-									</span>
+									<span className="sr-only">Your profile</span>
+									<div className="flex flex-col">
+										<span aria-hidden="true">{session.user.name}</span>
+										<span className="text-xs text-zinc-400" aria-hidden="true">
+											{session.user.email}
+										</span>
+									</div>
 								</div>
-							</div>
-
-							<SignOutButton className="h-full aspect-square" />
-						</li>
+								<SignOutButton className="h-full aspect-square" />
+							</li>
+						</div>
 					</ul>
 				</nav>
 			</div>

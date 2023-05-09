@@ -9,8 +9,8 @@ interface Props {
 	session: Session | null;
 }
 export const ZactButton: FC<Props> = ({ session }) => {
-	console.log('🚀 ~ file: ZactButton.tsx:10 ~ session:', session);
 	const { mutate, data, isLoading, error } = useZact(validatedAction);
+	console.log('🚀 ~ file: ZactButton.tsx:14 ~ error:', error?.message);
 
 	return (
 		<>

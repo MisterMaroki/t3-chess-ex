@@ -36,6 +36,7 @@ specifiers:
   tailwind-merge: ^1.11.0
   tailwindcss: ^3.3.1
   typescript: 4.9.5
+  use-sound: ^4.0.1
   zact: ^0.0.2
   zod: ^3.21.4
 
@@ -72,6 +73,7 @@ dependencies:
   react-textarea-autosize: 8.4.1_o2wclmlv6kymw75psj4clbbe6a
   tailwind-merge: 1.12.0
   typescript: 4.9.5
+  use-sound: 4.0.1_react@18.2.0
   zact: 0.0.2_next@13.4.1
   zod: 3.21.4
 
@@ -1678,6 +1680,10 @@ packages:
       react-is: 16.13.1
     dev: false
 
+  /howler/2.2.3:
+    resolution: {integrity: sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==}
+    dev: false
+
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
@@ -3154,6 +3160,15 @@ packages:
       '@types/react': 18.0.31
       react: 18.2.0
       use-isomorphic-layout-effect: 1.1.2_o2wclmlv6kymw75psj4clbbe6a
+    dev: false
+
+  /use-sound/4.0.1_react@18.2.0:
+    resolution: {integrity: sha512-hykJ86kNcu6y/FzlSHcQxhjSGMslZx2WlfLpZNoPbvueakv4OF3xPxEtGV2YmculrIaH0tPp9LtG4jgy17xMWg==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      howler: 2.2.3
+      react: 18.2.0
     dev: false
 
   /util-deprecate/1.0.2:
