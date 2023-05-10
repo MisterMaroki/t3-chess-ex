@@ -46,14 +46,6 @@ const SoundOnOffButton: FC<Props> = () => {
 		}
 	};
 
-	const stopCurrentSong = () => {
-		if (currentSong) {
-			stop1();
-		} else {
-			stop();
-		}
-	};
-
 	useEffect(() => {
 		if (isEnabled) {
 			playCurrentSong();

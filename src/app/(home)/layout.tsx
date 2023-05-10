@@ -61,7 +61,7 @@ const Layout = async ({ children }: LayoutProps) => {
 			<div className="container z-50 flex-col hidden h-full max-w-sm p-6 overflow-y-auto border-r-2 border-gray-200 w-fit shrink-0 order-0 glassy_bg md:flex grow gap-y-5">
 				<Link href="/home" className="flex items-center h-16 shrink-0">
 					<span className="logo_text">
-						GlassBoard <span className="text-6xl purple_gradient">♗</span>
+						Glassboard <span className="text-5xl purple_gradient">♗</span>
 					</span>
 				</Link>
 
@@ -69,15 +69,14 @@ const Layout = async ({ children }: LayoutProps) => {
 					<Button>Play Chess</Button>
 				</Link>
 
-				{friends.length > 0 ? (
-					<div className="text-xs font-semibold leading-6 text-gray-400">
-						Your chats
-					</div>
-				) : null}
-
 				<nav className="flex flex-col flex-1">
 					<ul role="list" className="flex flex-col flex-1 gap-y-7">
 						<li>
+							{friends.length > 0 ? (
+								<div className="text-xs font-semibold leading-6 text-gray-400">
+									Your chats
+								</div>
+							) : null}
 							<SidebarChatList sessionId={session.user.id} friends={friends} />
 						</li>
 						<li>

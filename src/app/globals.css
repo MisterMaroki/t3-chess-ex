@@ -196,7 +196,7 @@ body {
 
 /* Nav Component */
 .logo_text {
-	@apply font-satoshi text-3xl font-extrabold tracking-wide text-black max-sm:text-xl;
+	@apply font-inter text-3xl font-extrabold tracking-wide text-black max-sm:text-xl  leading-[1.15];
 }
 
 .dropdown {
