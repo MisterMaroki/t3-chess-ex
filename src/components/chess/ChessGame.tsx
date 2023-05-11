@@ -3,13 +3,11 @@
 import { getBookMove } from '@/app/(home)/chess/getBookMove';
 import { Chess } from 'chess.ts';
 import { Move, PartialMove, Piece, Square } from 'chess.ts/dist/types';
-import { set } from 'date-fns';
 import type { NextPage } from 'next';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import Button from '../ui/Button';
 import MoveList from './MoveList';
-import { defaultPieces } from './Pieces';
 
 const ChessGame: NextPage = () => {
 	const [game, setGame] = useState(new Chess());
@@ -69,15 +67,7 @@ const ChessGame: NextPage = () => {
 
 	return (
 		<div className="flex justify-center flex-1 pt-4">
-			<div className="relative flex items-center gap-1">
-				<p>Engine</p>
-				<span
-					className={`w-4 h-4 ${
-						engineHasMoves ? 'bg-green-400' : 'bg-red-400'
-					} border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900`}
-				></span>
-			</div>
-			<div className="flex flex-col items-center justify-center flex-1">
+			<div className="flex flex-col flex-1">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
@@ -146,6 +136,14 @@ const ChessGame: NextPage = () => {
 					>
 						Undo
 					</Button>
+					<div className="relative flex items-center gap-1">
+						<p>Engine Status: </p>
+						<span
+							className={`w-4 h-4 ${
+								engineHasMoves ? 'bg-green-400' : 'bg-red-400'
+							} border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900 blur-[1px] `}
+						></span>
+					</div>
 				</div>
 			</div>
 
