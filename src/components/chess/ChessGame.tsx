@@ -7,6 +7,7 @@ import { set } from 'date-fns';
 import type { NextPage } from 'next';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
+import Button from '../ui/Button';
 import MoveList from './MoveList';
 import { defaultPieces } from './Pieces';
 
@@ -76,7 +77,7 @@ const ChessGame: NextPage = () => {
 					} border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900`}
 				></span>
 			</div>
-			{(
+			<div className="flex flex-col items-center justify-center flex-1">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
@@ -102,31 +103,51 @@ const ChessGame: NextPage = () => {
 					customDarkSquareStyle={{ backgroundColor: '#779952' }}
 					customLightSquareStyle={{ backgroundColor: '#edeed1' }}
 					// customPieces={customPieces()}
-					customSquare={({ children, square, squareColor, style }) => {
-						const isHighlighted = availableSquares.current.includes(square);
-						return (
-							<div
-								style={{
-									...style,
-									...(isHighlighted
-										? {
-												boxShadow: `inset 0 0 0 2px ${
-													squareColor === 'white' ? '#779952' : '#edeed1'
-												}`,
-										  }
-										: {}),
-								}}
-							>
-								{children}
-							</div>
-						);
-					}}
+					// customSquare={({ children, square, squareColor, style }) => {
+					// 	const isHighlighted = availableSquares.current.includes(square);
+					// 	return (
+					// 		<div
+					// 			// ref={ref}
+					// 			style={{
+					// 				...style,
+					// 				...(isHighlighted
+					// 					? {
+					// 							boxShadow: `inset 0 0 0 2px ${
+					// 								squareColor === 'white' ? '#779952' : '#edeed1'
+					// 							}`,
+					// 					  }
+					// 					: {}),
+					// 			}}
+					// 		>
+					// 			{children}
+					// 		</div>
+					// 	);
+					// }}
 					areArrowsAllowed
 					arePremovesAllowed
 					clearPremovesOnRightClick
 					animationDuration={200}
 				></Chessboard>
-			) || null}
+				<div className="flex gap-2 mt-4">
+					<Button
+						onClick={() => {
+							setGame(new Chess());
+						}}
+					>
+						Reset
+					</Button>
+					<Button
+						onClick={() => {
+							setGame((g: Chess) => {
+								g.undo();
+								return g.clone();
+							});
+						}}
+					>
+						Undo
+					</Button>
+				</div>
+			</div>
 
 			<div className="flex flex-col justify-start">
 				<MoveList moves={game.history({ verbose: true })}></MoveList>
