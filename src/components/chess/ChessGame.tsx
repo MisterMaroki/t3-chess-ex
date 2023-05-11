@@ -5,9 +5,10 @@ import { Chess } from 'chess.ts';
 import { Move, PartialMove, Piece, Square } from 'chess.ts/dist/types';
 import { set } from 'date-fns';
 import type { NextPage } from 'next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import MoveList from './MoveList';
+import { defaultPieces } from './Pieces';
 
 const ChessGame: NextPage = () => {
 	const [game, setGame] = useState(new Chess());
@@ -94,9 +95,36 @@ const ChessGame: NextPage = () => {
 					getPositionObject={(fen) => {
 						// console.log('🚀 ~ file: ChessGame.tsx:96 ~ fen:', fen);
 					}}
+					customBoardStyle={{
+						borderRadius: '4px',
+						boxShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+					}}
+					customDarkSquareStyle={{ backgroundColor: '#779952' }}
+					customLightSquareStyle={{ backgroundColor: '#edeed1' }}
+					// customPieces={customPieces()}
+					customSquare={({ children, square, squareColor, style }) => {
+						const isHighlighted = availableSquares.current.includes(square);
+						return (
+							<div
+								style={{
+									...style,
+									...(isHighlighted
+										? {
+												boxShadow: `inset 0 0 0 2px ${
+													squareColor === 'white' ? '#779952' : '#edeed1'
+												}`,
+										  }
+										: {}),
+								}}
+							>
+								{children}
+							</div>
+						);
+					}}
 					areArrowsAllowed
 					arePremovesAllowed
 					clearPremovesOnRightClick
+					animationDuration={200}
 				></Chessboard>
 			) || null}
 
