@@ -1,9 +1,14 @@
 import Button from '@/components/ui/Button';
+import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { getServerSession } from 'next-auth';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function Home() {
 	await db.set('hello', 'world');
+	const session = await getServerSession(authOptions);
+	if (session?.user) redirect('/home');
 
 	return (
 		<section className="flex-col w-full flex-center">
