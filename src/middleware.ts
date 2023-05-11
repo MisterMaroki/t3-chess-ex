@@ -7,23 +7,23 @@ export default withAuth(
 		const pathname = req.nextUrl.pathname;
 
 		// Manage route protection
-		const isAuth = await getToken({ req });
+		const isAuthed = await getToken({ req });
 		const isLoginPage = pathname.startsWith('/login');
 
 		const sensitiveRoutes = ['/home'];
 		const isAccessingSensitiveRoute = sensitiveRoutes.some((route) =>
-			pathname.startsWith(route)
+			pathname?.startsWith(route)
 		);
 
 		if (isLoginPage) {
-			if (isAuth) {
+			if (isAuthed) {
 				return NextResponse.redirect(new URL('/home', req.url));
 			}
 
 			return NextResponse.next();
 		}
 
-		if (!isAuth && isAccessingSensitiveRoute) {
+		if (!isAuthed && isAccessingSensitiveRoute) {
 			return NextResponse.redirect(new URL('/login', req.url));
 		}
 	},

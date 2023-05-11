@@ -7,5 +7,6 @@ declare namespace NodeJS {
 		readonly PUSHER_APP_SECRET: string;
 		readonly GOOGLE_CLIENT_ID: string;
 		readonly GOOGLE_CLIENT_SECRET: string;
+		readonly LICHESS_API_KEY: string;
 	}
 }

@@ -7,7 +7,7 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 	}
 
 	return (
-		<div className="bg-[#31ddaf21] w-96 max-h-min">
+		<div className="bg-[#31ddaf21] max-h-min">
 			{moveStrings.map(
 				(moveStrings: (String | undefined)[], index): JSX.Element => {
 					const check = [
