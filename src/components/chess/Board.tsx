@@ -147,9 +147,9 @@ const ChessGame: NextPage = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-col justify-start">
+			{/* <div className="flex flex-col justify-start">
 				<MoveList moves={game.history({ verbose: true })}></MoveList>
-			</div>
+			</div> */}
 		</div>
 	);
 };

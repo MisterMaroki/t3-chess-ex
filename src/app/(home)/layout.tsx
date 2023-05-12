@@ -139,7 +139,7 @@ const Layout = async ({ children }: LayoutProps) => {
 				</nav>
 			</div>
 
-			<aside className="container w-full max-h-full pt-20 md:pt-12 ">
+			<aside className="flex items-start justify-center w-full h-full p-12 pt-28 md:pt-12">
 				{children}
 			</aside>
 		</div>

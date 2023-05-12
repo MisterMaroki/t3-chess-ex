@@ -1,4 +1,4 @@
-import ChessGame from '@/components/chess/ChessGame';
+import ChessGame from '@/components/chess/Board';
 import { FC } from 'react';
 
 type Props = {
