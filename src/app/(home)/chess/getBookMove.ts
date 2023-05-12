@@ -23,7 +23,10 @@ type MastersResponse = {
 	draw: number;
 	moves: MastersResponseMove[];
 	topGames: MastersResponseGame[];
-	opening: string;
+	opening: {
+		eco: string;
+		name: string;
+	};
 };
 
 type MastersResponseGame = {
@@ -68,6 +71,7 @@ export const getBookMove = zact(
 			return {
 				res: resData.moves[0].san,
 				online: true,
+				opening: resData.opening.name,
 			};
 		}
 	}
@@ -75,5 +79,5 @@ export const getBookMove = zact(
 	const moves = game.moves({ verbose: true });
 	const randomIndex = Math.floor(Math.random() * moves.length);
 	const randomMove = moves[randomIndex];
-	return { res: randomMove?.san, online: false };
+	return { res: randomMove?.san, online: false, opening: '' };
 });

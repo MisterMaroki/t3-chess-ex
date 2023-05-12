@@ -7,7 +7,7 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 	}
 
 	return (
-		<div className="bg-[#31ddaf21] max-h-min">
+		<div className="bg-[#31ddaf31] max-h-min min-w-max">
 			{moveStrings.map(
 				(moveStrings: (String | undefined)[], index): JSX.Element => {
 					const check = [
@@ -15,7 +15,10 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 						index % 2 === 0 ? '' : 'blue-gradient',
 					];
 					return (
-						<div key={`${index}-container`} className="flex justify-between">
+						<div
+							key={`${index}-container`}
+							className="flex justify-between border-b-2 border-[#31ddaf21]"
+						>
 							<div
 								className={`p-4 text-xl w-16 font-bold text-center ${check[0]}`}
 								key={`${index}-num`}

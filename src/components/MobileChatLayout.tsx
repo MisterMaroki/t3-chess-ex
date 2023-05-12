@@ -1,18 +1,18 @@
 'use client';
 
-import { Transition, Dialog } from '@headlessui/react';
+import { SidebarOption } from '@/types/typings';
+import { Dialog, Transition } from '@headlessui/react';
 import { Menu, X } from 'lucide-react';
+import { Session } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, Fragment, useEffect, useState } from 'react';
-import { Icons } from './Icons';
-import SignOutButton from './SignOutButton';
-import Button, { buttonVariants } from './ui/Button';
-import FriendRequestSidebarOptions from './FriendRequestSidebarOptions';
-import SidebarChatList from './SidebarChatList';
-import { Session } from 'next-auth';
-import { SidebarOption } from '@/types/typings';
 import { usePathname } from 'next/navigation';
+import { FC, Fragment, useEffect, useState } from 'react';
+import FriendRequestSidebarOptions from './FriendRequestSidebarOptions';
+import { Icons } from './Icons';
+import SidebarChatList from './SidebarChatList';
+import SignOutButton from './SignOutButton';
+import Button from './ui/Button';
 
 interface MobileChatLayoutProps {
 	friends: User[];
@@ -36,7 +36,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({
 	}, [pathname]);
 
 	return (
-		<div className="fixed inset-x-0 top-0 px-4 py-2 border-b bg-zinc-50 border-zinc-200">
+		<div className="fixed inset-x-0 z-[9] top-0 px-4 py-2 border-b bg-zinc-50 border-zinc-200">
 			<div className="flex items-center justify-between w-full">
 				<Link href="/home" className="flex items-center h-16 shrink-0">
 					<span className="logo_text">

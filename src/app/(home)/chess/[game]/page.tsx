@@ -1,4 +1,4 @@
-import ChessGame from '@/components/chess/Board';
+import ChessBoard from '@/components/chess/Board';
 import { FC } from 'react';
 
 type Props = {
@@ -15,8 +15,8 @@ const page: FC<Props> = ({ params }) => {
 	//if game is not over, show game
 
 	return (
-		<div className="flex items-start justify-start w-full h-full gap-x-4">
-			<ChessGame />
+		<div className="">
+			<ChessBoard />
 		</div>
 	);
 };

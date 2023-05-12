@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { CustomSquareProps } from 'react-chessboard/dist/chessboard/types';
 import type { Move } from 'chess.ts';
-import ChessGame from '@/components/chess/Board';
+import ChessBoard from '@/components/chess/Board';
 // eslint-disable-next-line react/display-name
 const CustomSquareRenderer = forwardRef<HTMLDivElement, CustomSquareProps>(
 	(props, ref) => {
@@ -45,33 +45,12 @@ const CustomSquareRenderer = forwardRef<HTMLDivElement, CustomSquareProps>(
 );
 export default function page() {
 	return (
-		<div className="flex flex-col items-start justify-start w-full md:flex-row">
+		<div className="container flex flex-col pt-28 md:pt-12 md:flex-row">
 			<audio autoPlay src="/welcome.mp3">
 				Your browser does not support the
 				<code>audio</code> element.
 			</audio>
-
-			<ChessGame />
-			<MoveList
-				moves={[
-					{
-						san: 'e4',
-						from: 'e4',
-						to: 'e5',
-						color: 'w',
-						flags: '',
-						piece: 'p',
-					},
-					{
-						san: 'Nf3',
-						from: 'g1',
-						to: 'f3',
-						color: 'w',
-						flags: 'n',
-						piece: 'n',
-					},
-				]}
-			/>
+			<ChessBoard />
 		</div>
 	);
 }

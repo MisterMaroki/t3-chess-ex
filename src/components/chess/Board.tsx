@@ -9,10 +9,11 @@ import { Chessboard } from 'react-chessboard';
 import Button from '../ui/Button';
 import MoveList from './MoveList';
 
-const ChessGame: NextPage = () => {
+const ChessBoard: NextPage = () => {
 	const [game, setGame] = useState(new Chess());
 	const availableSquares = useRef<string[]>([]);
 	const [engineHasMoves, setEngineHasMoves] = useState(true);
+	const [opening, setOpening] = useState('');
 
 	useEffect(() => {
 		console.log('updated game', game.history());
@@ -44,6 +45,9 @@ const ChessGame: NextPage = () => {
 		} else {
 			console.log('no move found');
 		}
+
+		if (data?.opening) setOpening(data.opening);
+
 		setEngineHasMoves(!!data?.online);
 	};
 
@@ -66,8 +70,8 @@ const ChessGame: NextPage = () => {
 	};
 
 	return (
-		<div className="w-1/2 ">
-			<div className="flex flex-col flex-1">
+		<div className="flex flex-col flex-1 gap-6 md:flex-row">
+			<div className="flex flex-col flex-1 max-w-xl">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
@@ -84,14 +88,22 @@ const ChessGame: NextPage = () => {
 						availableSquares.current = [];
 					}}
 					getPositionObject={(fen) => {
-						// console.log('🚀 ~ file: ChessGame.tsx:96 ~ fen:', fen);
+						// console.log('🚀 ~ file: ChessBoard.tsx:96 ~ fen:', fen);
 					}}
 					customBoardStyle={{
 						borderRadius: '4px',
-						boxShadow: '0 2px 10px rgba(0, 0, 0, 0.5)',
+						boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
+						backdropFilter: 'blur(40px)',
 					}}
-					customDarkSquareStyle={{ backgroundColor: '#779952' }}
-					customLightSquareStyle={{ backgroundColor: '#edeed1' }}
+					// customDarkSquareStyle={{ backgroundColor: '#779952' }}
+					// customLightSquareStyle={{ backgroundColor: '#edeed1' }}
+					customDarkSquareStyle={{
+						backgroundColor: 'radial-gradient(#31ddaf, #312e81)',
+					}}
+					customLightSquareStyle={{
+						backgroundColor: '#31ddaf41',
+						// backdropFilter: 'blur(40px)',
+					}}
 					// customPieces={customPieces()}
 					// customSquare={({ children, square, squareColor, style }) => {
 					// 	const isHighlighted = availableSquares.current.includes(square);
@@ -115,6 +127,7 @@ const ChessGame: NextPage = () => {
 					// }}
 					areArrowsAllowed
 					arePremovesAllowed
+					showBoardNotation={false}
 					clearPremovesOnRightClick
 					animationDuration={200}
 				></Chessboard>
@@ -136,6 +149,11 @@ const ChessGame: NextPage = () => {
 					>
 						Undo
 					</Button>
+				</div>
+			</div>
+
+			<div className="flex flex-col justify-start">
+				<div className="flex flex-row gap-2">
 					<div className="flex items-center gap-1">
 						<p>Engine Status: </p>
 						<span
@@ -144,14 +162,40 @@ const ChessGame: NextPage = () => {
 							} border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900 blur-[1px] `}
 						></span>
 					</div>
+					{opening ? (
+						<div className="flex items-center gap-1">
+							<p>Opening: </p>
+							<p className="text-sm text-gray-500">{opening}</p>
+						</div>
+					) : null}
 				</div>
+				<MoveList
+					moves={
+						game.history({ verbose: true }).length > 0
+							? game.history({ verbose: true })
+							: [
+									{
+										san: 'e4',
+										from: 'e4',
+										to: 'e5',
+										color: 'w',
+										flags: '',
+										piece: 'p',
+									},
+									{
+										san: 'Nf3',
+										from: 'g1',
+										to: 'f3',
+										color: 'w',
+										flags: 'n',
+										piece: 'n',
+									},
+							  ]
+					}
+				/>
 			</div>
-
-			{/* <div className="flex flex-col justify-start">
-				<MoveList moves={game.history({ verbose: true })}></MoveList>
-			</div> */}
 		</div>
 	);
 };
 
-export default ChessGame;
+export default ChessBoard;

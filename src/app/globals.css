@@ -118,7 +118,7 @@ body {
 /* Tailwind Styles */
 
 .app {
-	@apply relative z-10 min-h-screen mx-auto flex max-w-full h-screen w-screen max-h-full overflow-hidden flex-col items-center justify-center;
+	@apply relative z-10 mx-auto flex h-screen w-screen flex-col;
 }
 
 .black_btn {

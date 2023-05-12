@@ -58,7 +58,7 @@ const Layout = async ({ children }: LayoutProps) => {
 				/>
 			</div>
 
-			<div className="container z-50 flex-col hidden h-full max-w-sm p-6 overflow-y-auto border-r-2 border-gray-200 w-fit shrink-0 order-0 glassy_bg md:flex grow gap-y-5">
+			<div className="container flex-col hidden h-full max-w-sm p-6 overflow-y-auto border-r-2 border-gray-200 w-fit shrink-0 order-0 glassy_bg md:flex grow gap-y-5">
 				<Link href="/home" className="flex items-center h-16 shrink-0">
 					<span className="logo_text">
 						Glassboard <span className="text-5xl purple_gradient">♗</span>
@@ -139,9 +139,7 @@ const Layout = async ({ children }: LayoutProps) => {
 				</nav>
 			</div>
 
-			<aside className="flex items-start justify-center w-full h-full p-12 pt-28 md:pt-12">
-				{children}
-			</aside>
+			<aside className="container">{children}</aside>
 		</div>
 	);
 };
