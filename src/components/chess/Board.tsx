@@ -70,7 +70,7 @@ const ChessBoard: NextPage = () => {
 	};
 
 	return (
-		<div className="flex flex-col flex-1 gap-6 md:flex-row">
+		<div className="flex flex-col flex-1 h-full gap-6 md:flex-row">
 			<div className="flex flex-col flex-1 max-w-xl">
 				<Chessboard
 					id={'chessboard'}

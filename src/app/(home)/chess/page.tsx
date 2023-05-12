@@ -45,7 +45,7 @@ const CustomSquareRenderer = forwardRef<HTMLDivElement, CustomSquareProps>(
 );
 export default function page() {
 	return (
-		<div className="container flex flex-col pt-28 md:pt-12 md:flex-row">
+		<div className="container flex flex-col h-full pt-28 md:pt-12 md:flex-row">
 			<audio autoPlay src="/welcome.mp3">
 				Your browser does not support the
 				<code>audio</code> element.
