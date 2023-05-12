@@ -66,7 +66,7 @@ const ChessGame: NextPage = () => {
 	};
 
 	return (
-		<div className="flex justify-center flex-1 pt-4">
+		<div className="w-1/2 ">
 			<div className="flex flex-col flex-1">
 				<Chessboard
 					id={'chessboard'}
@@ -136,7 +136,7 @@ const ChessGame: NextPage = () => {
 					>
 						Undo
 					</Button>
-					<div className="relative flex items-center gap-1">
+					<div className="flex items-center gap-1">
 						<p>Engine Status: </p>
 						<span
 							className={`w-4 h-4 ${
