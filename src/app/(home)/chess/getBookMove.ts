@@ -1,7 +1,7 @@
 'use server';
 
 import { fetchRedis } from '@/helpers/redis';
-import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import axios, { AxiosError } from 'axios';
 import { Chess } from 'chess.ts';
 import { zact } from 'zact/server';

@@ -1,6 +1,6 @@
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import { pusherServer } from '@/lib/pusher';
 import { toPusherKey } from '@/lib/utils';
 import { addFriendValidator } from '@/lib/validations/add-friend';
@@ -80,7 +80,10 @@ export async function POST(req: Request) {
 			}
 		);
 
-		await db.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id);
+		await redis.sadd(
+			`user:${idToAdd}:incoming_friend_requests`,
+			session.user.id
+		);
 
 		return new Response('OK');
 	} catch (error) {

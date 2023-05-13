@@ -1,6 +1,6 @@
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import { pusherServer } from '@/lib/pusher';
 import { toPusherKey } from '@/lib/utils';
 import { Message, messageValidator } from '@/lib/validations/message';
@@ -67,7 +67,7 @@ export async function POST(req: Request) {
 		);
 
 		// all valid, send the message
-		await db.zadd(`chat:${chatId}:messages`, {
+		await redis.zadd(`chat:${chatId}:messages`, {
 			score: timestamp,
 			member: JSON.stringify(message),
 		});

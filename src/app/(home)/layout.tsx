@@ -48,7 +48,7 @@ const Layout = async ({ children }: LayoutProps) => {
 	).length;
 
 	return (
-		<div className="flex w-full h-full">
+		<div className="flex flex-col w-full h-full md:flex-row">
 			<div className="md:hidden">
 				<MobileChatLayout
 					friends={friends}

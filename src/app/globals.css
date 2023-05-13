@@ -188,7 +188,7 @@
 }
 
 .main_content {
-	@apply flex flex-col items-center flex-1 w-full h-full max-w-7xl;
+	@apply flex relative flex-col flex-1 h-full max-w-7xl;
 }
 
 .black_btn {

@@ -36,7 +36,7 @@ const MobileChatLayout: FC<MobileChatLayoutProps> = ({
 	}, [pathname]);
 
 	return (
-		<div className="fixed inset-x-0 z-[9] top-0 px-4 py-2 border-b bg-zinc-50 border-zinc-200">
+		<div className="sticky inset-x-0 z-[9] top-0 px-4 py-2 border-b bg-zinc-50 border-zinc-200">
 			<div className="flex items-center justify-between w-full">
 				<Link href="/home" className="flex items-center h-16 shrink-0">
 					<span className="logo_text">

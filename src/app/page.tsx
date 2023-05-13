@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/Button';
 import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -9,7 +9,7 @@ export default async function Home() {
 	const session = await getServerSession(authOptions);
 	if (session?.user) redirect('/home');
 
-	const x = await db.set('hell', {
+	const x = await redis.set('hell', {
 		world: 'word',
 	});
 	console.log('x', x);

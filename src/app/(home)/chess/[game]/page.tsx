@@ -8,7 +8,7 @@ type Props = {
 };
 
 const page: FC<Props> = ({ params }) => {
-	//check if game is in db
+	//check if game is in redis
 	//if not, create new game
 	//if so, load game
 	//if game is over, show game over screen

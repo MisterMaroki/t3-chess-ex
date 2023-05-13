@@ -1,6 +1,6 @@
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import { pusherServer } from '@/lib/pusher';
 import { toPusherKey } from '@/lib/utils';
 import { getServerSession } from 'next-auth';
@@ -60,9 +60,9 @@ export async function POST(req: Request) {
 				'new_friend',
 				friend
 			),
-			db.sadd(`user:${session.user.id}:friends`, idToAdd),
-			db.sadd(`user:${idToAdd}:friends`, session.user.id),
-			db.srem(`user:${session.user.id}:incoming_friend_requests`, idToAdd),
+			redis.sadd(`user:${session.user.id}:friends`, idToAdd),
+			redis.sadd(`user:${idToAdd}:friends`, session.user.id),
+			redis.srem(`user:${session.user.id}:incoming_friend_requests`, idToAdd),
 		]);
 
 		return new Response('OK');

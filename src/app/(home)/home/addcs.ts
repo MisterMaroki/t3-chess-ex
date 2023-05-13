@@ -2,7 +2,7 @@
 
 import { fetchRedis } from '@/helpers/redis';
 import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { redis } from '@/lib/redis';
 import { zact } from 'zact/server';
 import { z } from 'zod';
 
@@ -17,7 +17,7 @@ export const validatedAction = zact(
 		`user:${userId}:friends`
 	)) as string[];
 
-	const x = await db.get(`user:${userId}`);
+	const x = await redis.get(`user:${userId}`);
 	console.log('🚀 ~ file: addcs.ts:23 ~ ) ~ x:', x);
 	return { message: `added ${emailToAdd}\n to friends.` };
 });
