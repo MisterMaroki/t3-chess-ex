@@ -6,9 +6,13 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 export default async function Home() {
-	await db.set('hello', 'world');
 	const session = await getServerSession(authOptions);
 	if (session?.user) redirect('/home');
+
+	const x = await db.set('hell', {
+		world: 'word',
+	});
+	console.log('x', x);
 
 	return (
 		<section className="flex-col w-full h-full flex-center">

@@ -33,7 +33,7 @@
 		"eslint-config-next": "13.2.4",
 		"lucide-react": "^0.129.0",
 		"nanoid": "^4.0.2",
-		"next": "^13.4.1",
+		"next": "^13.4.2",
 		"next-auth": "^4.20.1",
 		"pusher": "^5.1.2",
 		"pusher-js": "^8.0.2",

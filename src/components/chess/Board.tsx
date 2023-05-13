@@ -135,6 +135,8 @@ const ChessBoard: NextPage = () => {
 					<Button
 						onClick={() => {
 							setGame(new Chess());
+							setOpening('');
+							setEngineHasMoves(true);
 						}}
 					>
 						Reset
@@ -155,19 +157,18 @@ const ChessBoard: NextPage = () => {
 			<div className="flex flex-col justify-start flex-1">
 				<div className="flex flex-row justify-between px-4">
 					<div className="flex items-center">
+						<p>Opening:</p>
+						<p className="ml-2 text-sm text-gray-500">
+							{opening || 'Waiting...'}
+						</p>
+					</div>
+					<div className="flex items-center">
 						<p>Engine</p>
 						<span
 							className={`ml-2 w-4 h-4 ${
 								engineHasMoves ? 'bg-green-400' : 'bg-red-400'
 							} border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900 blur-[1px] `}
 						></span>
-					</div>
-
-					<div className="flex items-center">
-						<p>Opening:</p>
-						<p className="ml-2 text-sm text-gray-500">
-							{opening || 'Waiting...'}
-						</p>
 					</div>
 				</div>
 				<MoveList moves={game.history({ verbose: true })} />
