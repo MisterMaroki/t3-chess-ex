@@ -187,6 +187,10 @@
 	@apply relative z-10 mx-auto flex h-screen w-screen flex-col;
 }
 
+.main_content {
+	@apply flex flex-col items-center justify-center flex-1 w-full h-full max-w-7xl;
+}
+
 .black_btn {
 	@apply flex items-center justify-center rounded-full border border-black bg-black px-5 py-1.5 text-center font-inter text-sm text-white transition-all hover:bg-white hover:text-black;
 }

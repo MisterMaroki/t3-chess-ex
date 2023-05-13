@@ -92,8 +92,8 @@ const ChessBoard: NextPage = () => {
 					}}
 					customBoardStyle={{
 						borderRadius: '4px',
-						boxShadow: '0 5px 15px rgba(0, 0, 0, 0.5)',
-						backdropFilter: 'blur(40px)',
+						// boxShadow: '0 0px 1px rgba(0, 0, 0, 0.9)',
+						backdropFilter: 'blur(4px)',
 					}}
 					// customDarkSquareStyle={{ backgroundColor: '#779952' }}
 					// customLightSquareStyle={{ backgroundColor: '#edeed1' }}
@@ -129,8 +129,8 @@ const ChessBoard: NextPage = () => {
 					arePremovesAllowed
 					showBoardNotation={false}
 					clearPremovesOnRightClick
-					animationDuration={200}
-				></Chessboard>
+					animationDuration={150}
+				/>
 				<div className="flex gap-2 mt-4">
 					<Button
 						onClick={() => {
@@ -153,21 +153,22 @@ const ChessBoard: NextPage = () => {
 			</div>
 
 			<div className="flex flex-col justify-start flex-1">
-				<div className="flex flex-row gap-2">
-					<div className="flex items-center gap-1">
-						<p>Engine Status: </p>
+				<div className="flex flex-row justify-between px-4">
+					<div className="flex items-center">
+						<p>Engine</p>
 						<span
-							className={`w-4 h-4 ${
+							className={`ml-2 w-4 h-4 ${
 								engineHasMoves ? 'bg-green-400' : 'bg-red-400'
 							} border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900 blur-[1px] `}
 						></span>
 					</div>
-					{opening ? (
-						<div className="flex items-center gap-1">
-							<p>Opening: </p>
-							<p className="text-sm text-gray-500">{opening}</p>
-						</div>
-					) : null}
+
+					<div className="flex items-center">
+						<p>Opening:</p>
+						<p className="ml-2 text-sm text-gray-500">
+							{opening || 'Waiting...'}
+						</p>
+					</div>
 				</div>
 				<MoveList moves={game.history({ verbose: true })} />
 			</div>

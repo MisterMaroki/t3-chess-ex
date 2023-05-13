@@ -63,7 +63,7 @@ const Layout = async ({ children }: LayoutProps) => {
 				sidebarOptions={sidebarOptions}
 				unseenRequestCount={unseenRequestCount}
 			/>
-			<aside className="app">{children}</aside>
+			<aside className="main_content">{children}</aside>
 		</div>
 	);
 };

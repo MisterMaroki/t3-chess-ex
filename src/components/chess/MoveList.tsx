@@ -16,7 +16,7 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 
 		scrollDownRef.current?.scrollTo({
 			top: scrollDownRef.current.scrollHeight,
-			behavior: 'smooth',
+			// behavior: 'smooth',
 		});
 	}, [moves]);
 	return (
