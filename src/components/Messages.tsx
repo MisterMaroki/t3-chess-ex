@@ -59,10 +59,7 @@ const Messages: FC<MessagesProps> = ({
 					messages[index - 1]?.senderId === messages[index].senderId;
 
 				return (
-					<div
-						className="chat-message"
-						key={`${message.id}-${message.timestamp}`}
-					>
+					<div key={`${message.id}-${message.timestamp}`}>
 						<div
 							className={cn('flex items-end', {
 								'justify-end': isCurrentUser,

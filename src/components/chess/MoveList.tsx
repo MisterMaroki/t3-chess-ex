@@ -1,24 +1,39 @@
+'use client';
 import { Move } from 'chess.ts';
+import { use, useEffect, useRef } from 'react';
+import { ScrollArea } from '../ui/scroll-area';
 
 const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 	let moveStrings: (String | undefined)[][] = [];
 	for (let i = 0; i < moves.length; i += 2) {
-		moveStrings.push([moves[i]?.san, moves[i + 1]?.san]);
+		moveStrings.unshift([moves[i]?.san, moves[i + 1]?.san]);
 	}
 
+	const scrollDownRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		// scrollDownRef.current?.scrollIntoView();
+
+		scrollDownRef.current?.scrollTo({
+			top: scrollDownRef.current.scrollHeight,
+			behavior: 'smooth',
+		});
+	}, [moves]);
 	return (
-		<div className="bg-[#31ddaf31] max-h-min min-w-max h-4/5">
-			{moveStrings.map(
-				(moveStrings: (String | undefined)[], index): JSX.Element => {
+		<div
+			id="messages"
+			className="relative flex flex-col h-full gap-4 p-3 overflow-y-scroll scrolling-touch scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
+			ref={scrollDownRef}
+		>
+			{moveStrings
+				.reverse()
+				.map((moveStrings: (String | undefined)[], index): JSX.Element => {
 					const check = [
 						index % 2 === 0 ? 'purple_gradient' : '',
 						index % 2 === 0 ? '' : 'blue-gradient',
 					];
 					return (
-						<div
-							key={`${index}-container`}
-							className="flex justify-between border-b-2 border-[#31ddaf21]"
-						>
+						<div key={`${index}-container`} className="flex justify-between ">
 							<div
 								className={`p-4 text-xl w-16 font-bold text-center ${check[0]}`}
 								key={`${index}-num`}
@@ -41,8 +56,8 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 							</div>
 						</div>
 					);
-				}
-			)}
+				})}
+			{/* <div ref={scrollDownRef} /> */}
 		</div>
 	);
 };

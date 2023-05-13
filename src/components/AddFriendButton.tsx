@@ -6,7 +6,7 @@ import axios, { AxiosError } from 'axios';
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Button from './ui/Button';
+import { Button } from './ui/Button';
 
 interface AddFriendButtonProps {}
 

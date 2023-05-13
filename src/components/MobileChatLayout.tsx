@@ -12,7 +12,7 @@ import FriendRequestSidebarOptions from './FriendRequestSidebarOptions';
 import { Icons } from './Icons';
 import SidebarChatList from './SidebarChatList';
 import SignOutButton from './SignOutButton';
-import Button from './ui/Button';
+import { Button } from '@/components/ui/Button';
 
 interface MobileChatLayoutProps {
 	friends: User[];

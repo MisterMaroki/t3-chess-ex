@@ -5,6 +5,7 @@ import { toPusherKey } from '@/lib/utils';
 import axios from 'axios';
 import { Check, UserPlus, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 import { FC, useEffect, useState } from 'react';
 
 interface FriendRequestsProps {
@@ -66,7 +67,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
 	};
 
 	return (
-		<>
+		<React.Fragment>
 			{friendRequests.length === 0 ? (
 				<p className="text-sm text-zinc-500">Nothing to show here...</p>
 			) : (
@@ -92,7 +93,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({
 					</div>
 				))
 			)}
-		</>
+		</React.Fragment>
 	);
 };
 

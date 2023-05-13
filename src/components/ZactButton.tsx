@@ -4,7 +4,7 @@ import { validatedAction } from '@/app/(home)/home/addcs';
 import { Session } from 'next-auth';
 import { FC, useEffect, useRef } from 'react';
 import { useZact } from 'zact/client';
-import Button from './ui/Button';
+import { Button } from './ui/Button';
 
 interface Props {
 	session: Session | null;

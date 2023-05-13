@@ -4,9 +4,9 @@ import { getBookMove } from '@/app/(home)/chess/getBookMove';
 import { Chess } from 'chess.ts';
 import { Move, PartialMove, Piece, Square } from 'chess.ts/dist/types';
 import type { NextPage } from 'next';
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
-import Button from '../ui/Button';
+import { Button } from '../ui/Button';
 import MoveList from './MoveList';
 
 const ChessBoard: NextPage = () => {
@@ -70,8 +70,8 @@ const ChessBoard: NextPage = () => {
 	};
 
 	return (
-		<div className="flex flex-col flex-1 h-full gap-6 md:flex-row">
-			<div className="flex flex-col flex-1 max-w-xl">
+		<Fragment>
+			<div className="flex flex-col flex-1 ">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
@@ -152,7 +152,7 @@ const ChessBoard: NextPage = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-col justify-start">
+			<div className="flex flex-col justify-start flex-1">
 				<div className="flex flex-row gap-2">
 					<div className="flex items-center gap-1">
 						<p>Engine Status: </p>
@@ -169,32 +169,9 @@ const ChessBoard: NextPage = () => {
 						</div>
 					) : null}
 				</div>
-				<MoveList
-					moves={
-						game.history({ verbose: true }).length > 0
-							? game.history({ verbose: true })
-							: [
-									{
-										san: 'e4',
-										from: 'e4',
-										to: 'e5',
-										color: 'w',
-										flags: '',
-										piece: 'p',
-									},
-									{
-										san: 'Nf3',
-										from: 'g1',
-										to: 'f3',
-										color: 'w',
-										flags: 'n',
-										piece: 'n',
-									},
-							  ]
-					}
-				/>
+				<MoveList moves={game.history({ verbose: true })} />
 			</div>
-		</div>
+		</Fragment>
 	);
 };
 

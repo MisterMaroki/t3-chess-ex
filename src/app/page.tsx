@@ -1,4 +1,4 @@
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { getServerSession } from 'next-auth';
@@ -11,7 +11,7 @@ export default async function Home() {
 	if (session?.user) redirect('/home');
 
 	return (
-		<section className="flex-col w-full flex-center">
+		<section className="flex-col w-full h-full flex-center">
 			<h1 className="text-center head_text">
 				GlassBoard <span className="text-6xl">♗</span> <br />
 				<span className="text-center orange_gradient"> AI-Powered Moves</span>
