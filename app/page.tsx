@@ -1,3 +1,4 @@
+'use server';
 import { Button } from 'components/ui/Button';
 import { authOptions } from 'lib/auth';
 import { redis } from 'lib/redis';
