@@ -45,7 +45,6 @@ export const getBookMove = zact(
 		fen: z.string(),
 	})
 )(async ({ play, fen }) => {
-	console.log('🚀 ~ file: getBookMove.ts:44 ~ ) ~ fen:', fen);
 	const lichessResponse = await axios
 		.get<MastersResponse>('masters', {
 			baseURL: 'https://explorer.lichess.ovh',

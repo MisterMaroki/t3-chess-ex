@@ -4,7 +4,6 @@ import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
 import { redis } from './redis';
-import { get } from 'http';
 
 function getGoogleCredentials() {
 	const clientId = process.env.GOOGLE_CLIENT_ID;

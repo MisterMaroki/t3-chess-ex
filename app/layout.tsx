@@ -1,3 +1,4 @@
+import { ScreenSizeIndicator } from '@/components/ScreenSizeIndicator';
 import Providers from 'components/Providers';
 import './globals.css';
 
@@ -19,6 +20,7 @@ export default function RootLayout({
 				</div>
 				<main className="antialiased app">
 					<Providers>{children}</Providers>
+					<ScreenSizeIndicator />
 				</main>
 			</body>
 		</html>
