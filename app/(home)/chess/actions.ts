@@ -146,6 +146,6 @@ export const makeMoveAction = zact(
 	});
 
 	pusherServer.trigger(toPusherKey(`game:${id}:fen`), 'new_move', fen);
-	// revalidatePath('/game/[id]');
+
 	return { fen: fen };
 });

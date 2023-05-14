@@ -12,7 +12,6 @@ interface Props {
 }
 export const ZactButton: FC<Props> = ({ session }) => {
 	const { mutate, data, isLoading, error } = useZact(newGameAction);
-	const inputRef = useRef<HTMLInputElement>(null);
 
 	const createGame = () => {
 		if (!session) return;
@@ -31,11 +30,8 @@ export const ZactButton: FC<Props> = ({ session }) => {
 		redirect(`/chess/${id}`);
 	}, [data]);
 	return (
-		<div>
-			<input type="email" ref={inputRef} />
-			<Button onClick={createGame} disabled={isLoading}>
-				{isLoading ? 'Loading...' : error ? error.message : 'Click me'}
-			</Button>
-		</div>
+		<Button onClick={createGame} disabled={isLoading}>
+			{isLoading ? 'Loading...' : error ? error.message : 'Click me'}
+		</Button>
 	);
 };
