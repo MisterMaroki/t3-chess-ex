@@ -79,13 +79,13 @@ const MainNav: FC<MainNavProps> = ({
 						<SoundOnOffButton />
 						<li className="flex items-center -ml-6">
 							<div className="flex items-center flex-1 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 gap-x-4">
-								<div className="relative w-8 h-8 glassy">
+								<div className="relative w-8 h-8">
 									<Image
 										fill
 										sizes="100px"
 										referrerPolicy="no-referrer"
 										className="rounded-full"
-										src={session.user.image || ''}
+										src={session.user?.image || '/avatar.svg'}
 										alt="Your profile picture"
 									/>
 								</div>

@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 const Page = async () => {
 	const session = await getServerSession(authOptions);
-	if (!session) redirect('/');
+	// if (!session) redirect('/');
 
 	return (
 		<div className="container flex flex-col items-start gap-3">

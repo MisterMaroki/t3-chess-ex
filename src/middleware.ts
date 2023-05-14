@@ -10,7 +10,7 @@ export default withAuth(
 		const isAuthed = await getToken({ req });
 		const isLoginPage = pathname.startsWith('/login');
 
-		const sensitiveRoutes = ['/home'];
+		const sensitiveRoutes = ['/home', '/chess'];
 		const isAccessingSensitiveRoute = sensitiveRoutes.some((route) =>
 			pathname?.startsWith(route)
 		);
