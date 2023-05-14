@@ -83,6 +83,12 @@
 	}
 }
 
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+}
+
 @layer base {
 	* {
 		@apply border-border;
@@ -213,6 +219,10 @@
 	@apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
 
+.logo_text {
+	@apply text-3xl font-extrabold text-black max-sm:text-xl  leading-[1.15];
+}
+
 .orange_gradient {
 	@apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
 }
@@ -279,9 +289,6 @@
 }
 
 /* Nav Component */
-.logo_text {
-	@apply font-inter text-3xl font-extrabold tracking-wide text-black max-sm:text-xl  leading-[1.15];
-}
 
 .dropdown {
 	@apply absolute right-0 top-full mt-3 flex w-full min-w-[210px] flex-col items-end justify-end gap-2 rounded-lg bg-white p-5;
