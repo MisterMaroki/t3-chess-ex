@@ -17,7 +17,7 @@ export default function RootLayout({
 				<div className="main">
 					<div className="gradient" />
 				</div>
-				<main className="min-h-screen antialiased app">
+				<main className="antialiased app">
 					<Providers>{children}</Providers>
 				</main>
 			</body>

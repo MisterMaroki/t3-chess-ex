@@ -70,8 +70,8 @@ const ChessBoard: NextPage = () => {
 	};
 
 	return (
-		<Fragment>
-			<div className="flex flex-col flex-1 ">
+		<div className="relative flex flex-col flex-1 gap-4 pt-8 md:h-full md:flex-row ">
+			<div className="flex flex-col flex-[2] min-w-max ">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
@@ -104,7 +104,6 @@ const ChessBoard: NextPage = () => {
 						backgroundColor: '#31ddaf41',
 						// backdropFilter: 'blur(40px)',
 					}}
-					// customPieces={customPieces()}
 					// customSquare={({ children, square, squareColor, style }) => {
 					// 	const isHighlighted = availableSquares.current.includes(square);
 					// 	return (
@@ -154,7 +153,7 @@ const ChessBoard: NextPage = () => {
 				</div>
 			</div>
 
-			<div className="flex flex-col justify-start flex-1">
+			<div className="flex flex-col flex-1 gap-2 ">
 				<div className="flex flex-row justify-between px-4">
 					<div className="flex items-center">
 						<p>Opening:</p>
@@ -171,9 +170,11 @@ const ChessBoard: NextPage = () => {
 						></span>
 					</div>
 				</div>
-				<MoveList moves={game.history({ verbose: true })} />
+				<div className="max-h-[54vh] flex-1">
+					<MoveList moves={game.history({ verbose: true })} />
+				</div>
 			</div>
-		</Fragment>
+		</div>
 	);
 };
 
