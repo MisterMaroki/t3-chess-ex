@@ -1,27 +1,72 @@
 'use client';
 
-import { getBookMove } from 'app/(home)/chess/getBookMove';
+import { getBookMoveAction, makeMoveAction } from '@/app/(home)/chess/actions';
+import { pusherClient } from '@/lib/pusher';
+import { toPusherKey } from '@/lib/utils';
 import { Chess } from 'chess.ts';
 import { Move, PartialMove, Piece, Square } from 'chess.ts/dist/types';
 import type { NextPage } from 'next';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Session } from 'next-auth';
+import { useEffect, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
+import { useZact } from 'zact/client';
 import { Button } from '../ui/Button';
 import MoveList from './MoveList';
 
-const ChessBoard: NextPage = () => {
-	const [game, setGame] = useState(new Chess());
-	const availableSquares = useRef<string[]>([]);
+interface GameProps {
+	dbGame: Game;
+	session: Session;
+}
+const ChessBoard: NextPage<GameProps> = ({ dbGame, session }) => {
+	// console.log('🚀 ~ file: Board.tsx:25 ~ session:', session);
+	// console.log('🚀 ~ file: Board.tsx:25 ~ dbGame:', dbGame);
+	const isBlack = dbGame.whitePlayer !== session?.user.id;
+	console.log('🚀 ~ file: Board.tsx:26 ~ isBlack:', isBlack);
+	const [game, setGame] = useState(new Chess(dbGame?.fen || undefined));
+	const color = isBlack ? 'black' : 'white';
 	const [engineHasMoves, setEngineHasMoves] = useState(true);
 	const [opening, setOpening] = useState('');
+	const isMyTurn = isBlack ? game.turn() === 'b' : game.turn() === 'w';
+	console.log('🚀 ~ fsile: Board.tsx:22 ~ isMyTurn:', isMyTurn);
+
+	const { mutate, data } = useZact(makeMoveAction);
 
 	useEffect(() => {
-		console.log('updated game', game.history());
-	}, [game]);
+		if (!data || !data.fen) return;
+
+		setGame((g: Chess) => {
+			g.load(data.fen);
+			return g.clone();
+		});
+	}, [data?.fen]);
+
+	useEffect(() => {
+		if (!dbGame.id) return;
+		pusherClient.subscribe(toPusherKey(`game:${dbGame.id}:fen`));
+		console.log('listening to ', `game:${dbGame.id}:fen`);
+
+		const newMoveHandler = (fen: string) => {
+			console.log('🚀 ~ file: Board.tsx:49 ~ newMoveHandler ~ fen:', fen);
+			setGame((g: Chess) => {
+				g.load(fen);
+				return g.clone();
+			});
+		};
+
+		pusherClient.bind('new_move', newMoveHandler);
+
+		return () => {
+			pusherClient.unsubscribe(toPusherKey(`game:${dbGame.id}:fen`));
+			pusherClient.unbind('new_move', newMoveHandler);
+		};
+	}, [dbGame.id]);
+
 	const doStep = async (move: PartialMove) => {
 		// We already verified that the inputted move was valid
 		// Compute the history here, apply the inputted move as
 		// fast as possible, then await the api and apply the response
+
+		if (!isMyTurn) return;
 
 		let history = game
 			.history({ verbose: true })
@@ -35,7 +80,17 @@ const ChessBoard: NextPage = () => {
 			return g.clone();
 		});
 
-		const data = await getBookMove({ play: history, fen: game.fen() });
+		if (dbGame?.id) {
+			console.log('updated game', game.history());
+			await mutate({
+				id: dbGame.id,
+				fen: game.fen(),
+				userId: session?.user.id,
+			});
+			return;
+		}
+
+		const data = await getBookMoveAction({ play: history, fen: game.fen() });
 
 		if (data?.res) {
 			setGame((g: Chess) => {
@@ -70,65 +125,27 @@ const ChessBoard: NextPage = () => {
 	};
 
 	return (
-		<div className="relative flex flex-col flex-1 gap-4 pt-8 md:h-full lg:flex-row ">
+		<div className="relative flex flex-col flex-1 gap-4 pt-8 lg::h-full lg:flex-row ">
 			<div className="flex flex-col flex-[2] min-w-max ">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
+					boardOrientation={color}
 					onPieceDrop={(sourceSquare, targetSquare) =>
 						onDrop(sourceSquare, targetSquare)
 					}
-					onPieceDragBegin={(piece, from) => {
-						const moves = game.moves({ square: from, verbose: true });
-						if (moves.length === 0) return;
-						const squaresToHighlight = moves.map((m) => m.to);
-						availableSquares.current = squaresToHighlight;
-					}}
-					onPieceDragEnd={() => {
-						availableSquares.current = [];
-					}}
-					getPositionObject={(fen) => {
-						// console.log('🚀 ~ file: ChessBoard.tsx:96 ~ fen:', fen);
-					}}
-					customBoardStyle={{
-						borderRadius: '4px',
-						// boxShadow: '0 0px 1px rgba(0, 0, 0, 0.9)',
-						backdropFilter: 'blur(4px)',
-					}}
+					// getPositionObject={(fen) => {
+					// 	// console.log('🚀 ~ file: ChessBoard.tsx:96 ~ fen:', fen);
+					// }}
 					// customDarkSquareStyle={{ backgroundColor: '#779952' }}
 					// customLightSquareStyle={{ backgroundColor: '#edeed1' }}
 					customDarkSquareStyle={{
-						backgroundColor: 'radial-gradient(#31ddaf, #312e81)',
+						backgroundColor: '#31ddaf57',
 					}}
 					customLightSquareStyle={{
-						backgroundColor: '#31ddaf41',
-						// backdropFilter: 'blur(40px)',
+						backgroundColor: '#79dbc111',
 					}}
-					// customSquare={({ children, square, squareColor, style }) => {
-					// 	const isHighlighted = availableSquares.current.includes(square);
-					// 	return (
-					// 		<div
-					// 			// ref={ref}
-					// 			style={{
-					// 				...style,
-					// 				...(isHighlighted
-					// 					? {
-					// 							boxShadow: `inset 0 0 0 2px ${
-					// 								squareColor === 'white' ? '#779952' : '#edeed1'
-					// 							}`,
-					// 					  }
-					// 					: {}),
-					// 			}}
-					// 		>
-					// 			{children}
-					// 		</div>
-					// 	);
-					// }}
-					areArrowsAllowed
 					arePremovesAllowed
-					showBoardNotation={false}
-					clearPremovesOnRightClick
-					animationDuration={150}
 				/>
 				<div className="flex gap-2 mt-4">
 					<Button
@@ -150,6 +167,10 @@ const ChessBoard: NextPage = () => {
 					>
 						Undo
 					</Button>
+					<div className="flex items-center">
+						<p>Playing as:</p>
+						<p className="ml-2 text-gray-500">{isBlack ? 'Black' : 'White'}</p>
+					</div>
 				</div>
 			</div>
 

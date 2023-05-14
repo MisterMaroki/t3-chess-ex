@@ -23,3 +23,15 @@ interface FriendRequest {
 	senderId: string;
 	receiverId: string;
 }
+
+interface Game {
+	id: string;
+	fen: string;
+	blackPlayer: string | null;
+	whitePlayer: string | null;
+	isPublic: boolean;
+	length: number;
+	nextMove: Color;
+}
+
+type Color = 'white' | 'black';

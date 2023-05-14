@@ -5,11 +5,10 @@ import { redirect } from 'next/navigation';
 
 const Page = async () => {
 	const session = await getServerSession(authOptions);
-	// if (!session) redirect('/');
 
 	return (
 		<div className="container flex flex-col items-start gap-3">
-			<h1 className="head_text">Welcome, {session?.user.name}!</h1>
+			<h1 className="head_text">Welcome, {session?.user.id}!</h1>
 			<ZactButton session={session} />
 		</div>
 	);

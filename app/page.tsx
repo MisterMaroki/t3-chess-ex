@@ -9,11 +9,6 @@ export default async function Home() {
 	const session = await getServerSession(authOptions);
 	if (session?.user) redirect('/home');
 
-	const x = await redis.set('hell', {
-		world: 'word',
-	});
-	console.log('x', x);
-
 	return (
 		<section className="flex-col w-full h-full flex-center">
 			<h1 className="text-center head_text">

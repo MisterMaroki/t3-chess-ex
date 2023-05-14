@@ -1,7 +1,8 @@
 'use client';
 
-import { validatedAction } from 'app/(home)/home/addcs';
+import { newGameAction } from '@/app/(home)/chess/actions';
 import { Session } from 'next-auth';
+import { redirect } from 'next/navigation';
 import { FC, useEffect, useRef } from 'react';
 import { useZact } from 'zact/client';
 import { Button } from './ui/Button';
@@ -10,28 +11,30 @@ interface Props {
 	session: Session | null;
 }
 export const ZactButton: FC<Props> = ({ session }) => {
-	const { mutate, data, isLoading, error } = useZact(validatedAction);
+	const { mutate, data, isLoading, error } = useZact(newGameAction);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const makeItHAppenBro = () => {
+	const createGame = () => {
 		if (!session) return;
 		mutate({
-			emailToAdd: inputRef.current?.value || '',
-			userId: session?.user.id || '',
+			userId: session.user.id,
+			isPublic: false,
+			length: 0,
+			colorChoice: 'random',
 		});
 	};
 
+	useEffect(() => {
+		if (!data) return;
+		const { id } = data;
+		if (!id) return;
+		redirect(`/chess/${id}`);
+	}, [data]);
 	return (
 		<div>
 			<input type="email" ref={inputRef} />
-			<Button onClick={makeItHAppenBro} disabled={isLoading}>
-				{data
-					? data.message
-					: isLoading
-					? 'Loading...'
-					: error
-					? error.message
-					: 'Click me'}
+			<Button onClick={createGame} disabled={isLoading}>
+				{isLoading ? 'Loading...' : error ? error.message : 'Click me'}
 			</Button>
 		</div>
 	);
