@@ -136,7 +136,7 @@ export const makeMoveAction = zact(
 
 	const isBlack = game.whitePlayer !== userId;
 
-	const res = await redis.set(`game:${id}`, {
+	await redis.set(`game:${id}`, {
 		fen,
 		blackPlayer: isBlack ? userId : game.blackPlayer,
 		whitePlayer: !isBlack ? userId : game.whitePlayer,
@@ -145,7 +145,7 @@ export const makeMoveAction = zact(
 		nextMove: game.nextMove === 'white' ? 'black' : 'white',
 	});
 
-	pusherServer.trigger(toPusherKey(`game:${id}:fen`), 'new_move', fen);
+	await pusherServer.trigger(toPusherKey(`game:${id}:fen`), 'new_move', fen);
 
 	return { fen: fen };
 });
