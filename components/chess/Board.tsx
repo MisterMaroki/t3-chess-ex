@@ -146,6 +146,7 @@ const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 						backgroundColor: '#79dbc111',
 					}}
 					arePremovesAllowed
+					animationDuration={120}
 				/>
 				<div className="flex gap-2 mt-4">
 					<Button
