@@ -31,6 +31,18 @@ const Page: FC = () => {
 		}
 	}
 
+	async function loginWithGithub() {
+		setIsLoading(true);
+		try {
+			await signIn('github');
+		} catch (error) {
+			// display error message to user
+			toast.error('Something went wrong with your login.');
+		} finally {
+			setIsLoading(false);
+		}
+	}
+
 	return (
 		<div className="container h-full flex-center">
 			{/* <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
@@ -98,8 +110,8 @@ const Page: FC = () => {
 							<Icons.Google className="w-4 h-4 mr-2" />
 							Google
 						</Button>
-						<Button disabled>
-							<Icons.Google className="w-4 h-4 mr-2" />
+						<Button isLoading={isLoading} onClick={loginWithGithub}>
+							<Icons.Github className="w-4 h-4 mr-2" />
 							Github
 						</Button>
 					</div>

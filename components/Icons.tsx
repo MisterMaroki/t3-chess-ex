@@ -1,4 +1,4 @@
-import { LucideProps, UserPlus, VolumeX, Volume2 } from 'lucide-react';
+import { LucideProps, UserPlus, VolumeX, Volume2, Github } from 'lucide-react';
 
 export const Icons = {
 	Logo: (props: LucideProps) => (
@@ -51,6 +51,7 @@ export const Icons = {
 			<path d="M1 1h22v22H1z" fill="none" />
 		</svg>
 	),
+	Github,
 };
 
 export type Icon = keyof typeof Icons;
