@@ -19,7 +19,7 @@ export const ZactButton: FC<Props> = ({ session }) => {
 			userId: session.user.id,
 			isPublic: false,
 			length: 0,
-			colorChoice: 'random',
+			colorChoice: 'white',
 		});
 	};
 
