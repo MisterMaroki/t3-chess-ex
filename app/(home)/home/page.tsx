@@ -1,4 +1,4 @@
-import { ZactButton } from 'components/ZactButton';
+import { ZactButton } from '@/components/NewGameButton';
 import { authOptions } from 'lib/auth';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';

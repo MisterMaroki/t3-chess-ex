@@ -31,7 +31,7 @@ export const ZactButton: FC<Props> = ({ session }) => {
 	}, [data]);
 	return (
 		<Button onClick={createGame} disabled={isLoading}>
-			{isLoading ? 'Loading...' : error ? error.message : 'Click me'}
+			{isLoading ? 'Loading...' : error ? error.message : 'Create game'}
 		</Button>
 	);
 };
