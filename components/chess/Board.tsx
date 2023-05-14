@@ -192,7 +192,7 @@ const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 						></span>
 					</div>
 				</div>
-				<div className="max-h-[54vh] flex-1">
+				<div className="max-h-[54vh] lg:max-h-full flex-1">
 					<MoveList moves={game.history({ verbose: true })} />
 				</div>
 			</div>

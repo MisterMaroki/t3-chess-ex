@@ -19,7 +19,7 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 
 	return (
 		<div
-			className="relative glassy_bg flex flex-col h-[35vh] lg::h-full p-3 flex-1  overflow-y-scroll overflow-x-hidden scrolling-touch scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
+			className="relative glassy_bg flex flex-col h-[35vh] lg:h-full p-3 flex-1  overflow-y-scroll overflow-x-hidden scrolling-touch scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
 			ref={scrollDownRef}
 		>
 			{moveStrings
