@@ -10,7 +10,7 @@ export default function page() {
 			<div className="absolute inset-0 w-full h-full ">
 				<div className="glassy_bg chesslayoutbg" />
 			</div>
-			<ChessBoard />
+			<ChessBoard dbGame={null} session={null} />
 		</div>
 	);
 }

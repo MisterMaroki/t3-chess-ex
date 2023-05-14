@@ -3,7 +3,6 @@ import { authOptions } from '@/lib/auth';
 import ChessBoard from 'components/chess/Board';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
-import { Suspense } from 'react';
 
 type Props = {
 	params: {

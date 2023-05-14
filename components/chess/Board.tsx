@@ -7,20 +7,20 @@ import { Chess } from 'chess.ts';
 import { Move, PartialMove, Piece, Square } from 'chess.ts/dist/types';
 import type { NextPage } from 'next';
 import { Session } from 'next-auth';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Chessboard } from 'react-chessboard';
 import { useZact } from 'zact/client';
 import { Button } from '../ui/Button';
 import MoveList from './MoveList';
 
 interface GameProps {
-	dbGame: Game;
-	session: Session;
+	dbGame: Game | null;
+	session: Session | null;
 }
-const ChessBoard: NextPage<GameProps> = ({ dbGame, session }) => {
+const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 	// console.log('🚀 ~ file: Board.tsx:25 ~ session:', session);
 	// console.log('🚀 ~ file: Board.tsx:25 ~ dbGame:', dbGame);
-	const isBlack = dbGame.whitePlayer !== session?.user.id;
+	const isBlack = dbGame?.whitePlayer !== session?.user.id;
 	console.log('🚀 ~ file: Board.tsx:26 ~ isBlack:', isBlack);
 	const [game, setGame] = useState(new Chess(dbGame?.fen || undefined));
 	const color = isBlack ? 'black' : 'white';
@@ -41,7 +41,7 @@ const ChessBoard: NextPage<GameProps> = ({ dbGame, session }) => {
 	}, [data?.fen]);
 
 	useEffect(() => {
-		if (!dbGame.id) return;
+		if (!dbGame?.id) return;
 		pusherClient.subscribe(toPusherKey(`game:${dbGame.id}:fen`));
 		console.log('listening to ', `game:${dbGame.id}:fen`);
 
@@ -59,7 +59,7 @@ const ChessBoard: NextPage<GameProps> = ({ dbGame, session }) => {
 			pusherClient.unsubscribe(toPusherKey(`game:${dbGame.id}:fen`));
 			pusherClient.unbind('new_move', newMoveHandler);
 		};
-	}, [dbGame.id]);
+	}, [dbGame?.id]);
 
 	const doStep = async (move: PartialMove) => {
 		// We already verified that the inputted move was valid
@@ -85,7 +85,7 @@ const ChessBoard: NextPage<GameProps> = ({ dbGame, session }) => {
 			await mutate({
 				id: dbGame.id,
 				fen: game.fen(),
-				userId: session?.user.id,
+				userId: session?.user.id || '',
 			});
 			return;
 		}
