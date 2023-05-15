@@ -87,12 +87,12 @@ const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 				fen: game.fen(),
 				userId: session?.user.id || '',
 			});
-			return;
+			// return;
 		}
 
 		const data = await getBookMoveAction({ play: history, fen: game.fen() });
 
-		if (data?.res) {
+		if (data?.res && !dbGame?.id) {
 			setGame((g: Chess) => {
 				g.move(data.res);
 				return g.clone();
@@ -125,8 +125,8 @@ const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 	};
 
 	return (
-		<div className="relative flex flex-col flex-1 gap-4 pt-8 lg::h-full lg:flex-row ">
-			<div className="flex flex-col flex-[2] min-w-max ">
+		<div className="relative flex flex-col flex-1 h-full gap-4 pt-8 lg:flex-row ">
+			<div className="flex flex-col flex-[2] min-w-max">
 				<Chessboard
 					id={'chessboard'}
 					position={game.fen()}
@@ -175,7 +175,7 @@ const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 				</div>
 			</div>
 
-			<div className="flex flex-col flex-1 gap-2 ">
+			<div className="flex flex-col flex-1 h-full gap-2">
 				<div className="flex flex-row justify-between px-4">
 					<div className="flex items-center">
 						<p>Opening:</p>
@@ -192,7 +192,7 @@ const ChessBoard: FC<GameProps> = ({ dbGame, session }) => {
 						></span>
 					</div>
 				</div>
-				<div className="max-h-[54vh] lg:max-h-full flex-1">
+				<div className="max-h-[54vh] lg:max-h-[calc(100%-6rem)] h-full flex-1 flex z-10">
 					<MoveList moves={game.history({ verbose: true })} />
 				</div>
 			</div>

@@ -17,9 +17,9 @@ const Page = async ({ params }: Props) => {
 	const game = await getGame(params.id);
 
 	return (
-		<div className="hello">
+		<section className="container">
 			<ChessBoard dbGame={{ ...game, id: params.id }} session={session} />
-		</div>
+		</section>
 	);
 };
 

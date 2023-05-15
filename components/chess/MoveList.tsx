@@ -1,4 +1,5 @@
 'use client';
+import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { Move } from 'chess.ts';
 import { useEffect, useRef } from 'react';
 
@@ -19,7 +20,7 @@ const MoveList: React.FC<{ moves: Move[] }> = ({ moves }) => {
 
 	return (
 		<div
-			className="relative glassy_bg flex flex-col h-[35vh] lg:h-full p-3 flex-1  overflow-y-scroll overflow-x-hidden scrolling-touch scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
+			className="relative flex flex-col flex-1 h-[35vh] lg:h-full p-3 overflow-x-hidden overflow-y-scroll scrolling-touch glassy_bg scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2"
 			ref={scrollDownRef}
 		>
 			{moveStrings
